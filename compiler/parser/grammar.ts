@@ -6,6 +6,7 @@
  *
  * mEqu => bEqu *  mEqu {*}
  * mEqu => bEqu /  mEqu {/}
+ * mEqu => bEqu %  mEqu {%}
  * mEqu => bEqu
  *
  * powEqu => bEqu ** powEqu
@@ -58,9 +59,13 @@ export class Equation extends Phrase {
 
 export class MultiEquation extends Phrase {
   static parseLexemes(lexemes: Lexeme[]): Lexeme[] | undefined {
-    for (var index = 0; index < lexemes.length; index++) {
+    for (var index = lexemes.length - 1; index >= 0; index--) {
       const lexeme = lexemes[index];
-      if (lexeme.type == LexemeType.Multi || lexeme.type == LexemeType.Div) {
+      if (
+        lexeme.type == LexemeType.Multi ||
+        lexeme.type == LexemeType.Div ||
+        lexeme.type == LexemeType.Mod
+      ) {
         const leftEqu = lexemes.slice(0, index);
         const rightEqu = lexemes.slice(index + 1);
 
@@ -78,7 +83,7 @@ export class MultiEquation extends Phrase {
 
 export class PowerEquation extends Phrase {
   static parseLexemes(lexemes: Lexeme[]): Lexeme[] | undefined {
-    for (var index = 0; index < lexemes.length; index++) {
+    for (var index = lexemes.length - 1; index >= 0; index--) {
       const lexeme = lexemes[index];
 
       if (lexeme.type == LexemeType.Pow) {

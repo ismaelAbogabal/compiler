@@ -9,10 +9,11 @@ function testEquation(equation: string) {
   console.log("lexeme analyser output :", lexemes);
 
   const postFix = extractPostFix(lexemes);
-  console.log("parser postfix output :", postFix);
+  console.log("parser postfix output :", postFix) ;
 
   const value = calc(postFix);
   console.log("calculation output:", value);
 }
 
-testEquation("2* (1 + (2*2)**(1+2))");
+testEquation("5 % 3 * 2");
+testEquation("2 * 5 % 3");

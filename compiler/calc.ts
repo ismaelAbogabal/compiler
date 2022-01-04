@@ -23,6 +23,9 @@ export function calc(postFix: Lexeme[]): number {
         case LexemeType.Div:
           stack.push(last2 / last1);
           break;
+        case LexemeType.Mod:
+          stack.push(last2 % last1);
+          break;
         case LexemeType.Pow:
           stack.push(last2 ** last1);
           break;
